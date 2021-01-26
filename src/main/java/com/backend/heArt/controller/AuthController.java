@@ -76,17 +76,12 @@ public class AuthController {
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
-        System.out.println(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user);
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
-        System.out.println("------------------------------------------------------------");
-        System.out.println(userRole);
         user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
-        System.out.println(result);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
