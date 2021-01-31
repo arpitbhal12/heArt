@@ -3,6 +3,9 @@ package com.backend.heArt.model;
 public enum Roles {
     ROLE_ADMIN("Admin", 1), ROLE_USER("User", 2);
 
+    String roleName;
+    int roleId;
+
     public String getRoleName() {
         return roleName;
     }
@@ -10,9 +13,6 @@ public enum Roles {
     public int getRoleId() {
         return roleId;
     }
-
-    String roleName;
-    int roleId;
 
     Roles(String admin, int i) {
     }
