@@ -1,5 +1,7 @@
 package com.backend.heArt.request;
 
+import com.backend.heArt.model.Roles;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -21,6 +23,12 @@ public class SignUpRequest {
     @NotBlank
     @Size(min = 6, max = 20)
     private String password;
+
+//    @NotBlank
+//    @Size(max = 13)
+//    private Long phone;
+
+    private Roles role;
 
     @Override
     public String toString() {
@@ -62,5 +70,9 @@ public class SignUpRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Roles getRole() {
+        return role;
     }
 }

@@ -1,10 +1,7 @@
 package com.backend.heArt.controller;
 
 import com.backend.heArt.exception.AppException;
-import com.backend.heArt.model.Role;
-import com.backend.heArt.model.RoleName;
 import com.backend.heArt.model.User;
-import com.backend.heArt.repository.RoleRepository;
 import com.backend.heArt.repository.UserRepository;
 import com.backend.heArt.request.LoginRequest;
 import com.backend.heArt.request.SignUpRequest;
@@ -34,9 +31,6 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -75,11 +69,8 @@ public class AuthController {
 
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+                signUpRequest.getEmail(), signUpRequest.getPassword(), signUpRequest.getRole());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
-        user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
         URI location = ServletUriComponentsBuilder

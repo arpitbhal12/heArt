@@ -11,6 +11,11 @@ public class ArtsController {
 
     @GetMapping("/getRandomArts")
     public ResponseEntity<?> generateRandomArts() {
-        return ResponseEntity.ok("This is a public API for Random Arts");
+        return ResponseEntity.ok("This is a public API for Random Arts -> but still doesn't open without token");
+    }
+
+    @RequestMapping("/")
+    public String reDirToRandomArts() {
+        return "redirect:/getRandomArts";
     }
 }
