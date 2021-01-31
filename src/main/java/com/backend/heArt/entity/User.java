@@ -1,4 +1,4 @@
-package com.backend.heArt.model;
+package com.backend.heArt.entity;
 
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -6,19 +6,17 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -58,7 +56,7 @@ public class User implements UserDetails {
     @Size(max = 255)
     private String cover_picture;
 
-//    private double rating;
+    private double rating;
 
 //    @NaturalId
 //    @NotBlank
@@ -72,13 +70,6 @@ public class User implements UserDetails {
     private Date updatedAt;
 
     private Roles role;
-
-
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roles = new HashSet<>();
 
     public User() {
 

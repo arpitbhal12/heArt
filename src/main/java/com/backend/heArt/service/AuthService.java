@@ -1,6 +1,6 @@
 package com.backend.heArt.service;
 
-import com.backend.heArt.model.User;
+import com.backend.heArt.entity.User;
 import com.backend.heArt.repository.UserRepository;
 import com.backend.heArt.request.LoginRequest;
 import com.backend.heArt.request.SignUpRequest;
@@ -14,9 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @Service
 public class AuthService {

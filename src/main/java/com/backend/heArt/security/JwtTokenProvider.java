@@ -1,6 +1,6 @@
 package com.backend.heArt.security;
 
-import com.backend.heArt.model.User;
+import com.backend.heArt.entity.User;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

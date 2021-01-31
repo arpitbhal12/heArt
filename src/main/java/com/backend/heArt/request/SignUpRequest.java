@@ -1,6 +1,6 @@
 package com.backend.heArt.request;
 
-import com.backend.heArt.model.Roles;
+import com.backend.heArt.entity.Roles;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

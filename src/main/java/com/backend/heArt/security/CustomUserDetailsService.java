@@ -1,6 +1,6 @@
 package com.backend.heArt.security;
 
-import com.backend.heArt.model.User;
+import com.backend.heArt.entity.User;
 import com.backend.heArt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

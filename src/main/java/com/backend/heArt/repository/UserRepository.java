@@ -1,6 +1,6 @@
 package com.backend.heArt.repository;
 
-import com.backend.heArt.model.User;
+import com.backend.heArt.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
