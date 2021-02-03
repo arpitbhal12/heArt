@@ -7,6 +7,7 @@ import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+//would need to make a new data feature for each query
 @Component
 public class UserDataFetcher implements DataFetcher<User> {
 
