@@ -1,0 +1,17 @@
+type Query{
+	getUser(id:Int):User
+}
+
+type User {
+    id:Int
+    name:String
+    username:String
+    email:String
+    password:String
+    displayPicture:String
+    coverPicture:String
+    rating:Float
+    createdAt:String
+    updatedAt:String
+    role:Int
+}

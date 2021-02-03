@@ -21,7 +21,7 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int posts_sold;
+    private int postsSold;
 
     private Specialisation specialisation;
 
