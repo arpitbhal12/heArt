@@ -71,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/",
+                        "/mail",
                         "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",

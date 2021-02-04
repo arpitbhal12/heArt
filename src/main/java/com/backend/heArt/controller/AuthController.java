@@ -4,17 +4,17 @@ import com.backend.heArt.request.LoginRequest;
 import com.backend.heArt.request.SignUpRequest;
 import com.backend.heArt.response.ApiResponse;
 import com.backend.heArt.response.JwtAuthenticationResponse;
+import com.backend.heArt.security.EmailSender;
 import com.backend.heArt.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
 @RestController
@@ -22,6 +22,8 @@ import java.net.URI;
 public class AuthController {
     @Autowired
     AuthService authService;
+    @Autowired
+    EmailSender emailSender;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -39,6 +41,12 @@ public class AuthController {
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(signUpRequest.getUsername()).toUri();
         return ResponseEntity.created(location).body(registerUserResponse);
+    }
+
+    @GetMapping("/mail")
+    public void sendMail(@RequestParam String email) throws UnsupportedEncodingException, MessagingException {
+        System.out.println(email);
+        emailSender.sendEmail(email);
     }
 
 }
