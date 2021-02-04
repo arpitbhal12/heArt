@@ -36,6 +36,10 @@ public class AuthService {
             return new ApiResponse(false, "Email Address already in use!");
         }
 
+        if(userRepository.existsByPhone(signUpRequest.getPhone())) {
+            return new ApiResponse(false, "Phone number already in use!");
+        }
+
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPhone(), signUpRequest.getPassword(), signUpRequest.getRole());
