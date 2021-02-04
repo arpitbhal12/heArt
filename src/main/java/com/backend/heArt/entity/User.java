@@ -58,10 +58,10 @@ public class User implements UserDetails {
 
     private double rating;
 
-//    @NaturalId
-//    @NotBlank
-//    @Size(max = 13)
-//    private Long phone;
+    @NaturalId
+    @NotBlank
+    @Size(min = 10, max = 12)
+    private String phone;
 
     @CreationTimestamp
     private Date createdAt;
@@ -75,10 +75,11 @@ public class User implements UserDetails {
 
     }
 
-    public User(String name, String username, String email, String password, Roles role) {
+    public User(String name, String username, String email, String phone, String password, Roles role) {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.phone = phone;
         this.password = password;
         this.role = role;
     }
