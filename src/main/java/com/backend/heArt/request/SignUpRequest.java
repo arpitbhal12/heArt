@@ -5,7 +5,6 @@ import com.backend.heArt.entity.Roles;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 public class SignUpRequest {
     @NotBlank
@@ -20,24 +19,6 @@ public class SignUpRequest {
     @Size(max = 40)
     @Email
     private String email;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SignUpRequest)) return false;
-        SignUpRequest that = (SignUpRequest) o;
-        return getName().equals(that.getName()) &&
-                getUsername().equals(that.getUsername()) &&
-                getEmail().equals(that.getEmail()) &&
-                getPassword().equals(that.getPassword()) &&
-                getPhone().equals(that.getPhone()) &&
-                getRole() == that.getRole();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getUsername(), getEmail(), getPassword(), getPhone(), getRole());
-    }
 
     @NotBlank
     @Size(min = 6, max = 20)
