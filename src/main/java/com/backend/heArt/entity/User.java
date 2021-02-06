@@ -17,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -63,25 +64,40 @@ public class User implements UserDetails {
     @Size(min = 10, max = 12)
     private String phone;
 
+    private Boolean enabled;
+
+    private String confirmationToken;
+
+    private Roles role;
+
     @CreationTimestamp
     private Date createdAt;
 
     @UpdateTimestamp
     private Date updatedAt;
 
-    private Roles role;
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
 
     public User() {
 
     }
 
-    public User(String name, String username, String email, String phone, String password, Roles role) {
+    public User(String name, String username, String email, String phone, String password, Roles role, Boolean enabled, String confirmationToken) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.phone = phone;
         this.password = password;
         this.role = role;
+        this.enabled = enabled;
+        this.confirmationToken = confirmationToken;
     }
 
     public Long getId() {
@@ -113,7 +129,11 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
+    }
+
+    public void setEnabled() {
+        this.enabled = true;
     }
 
     public void setUsername(String username) {
