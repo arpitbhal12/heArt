@@ -1,6 +1,5 @@
-package com.backend.heArt.security;
+package com.backend.heArt.security.email;
 
-import com.backend.heArt.HeArtApplication;
 import com.backend.heArt.request.SignUpRequest;
 import lombok.extern.slf4j.XSlf4j;
 import org.slf4j.Logger;
@@ -8,11 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -43,7 +41,8 @@ public class EmailSender {
     private String mailSmtpPort;
 
 
-    public void sendEmail(String email) throws UnsupportedEncodingException, MessagingException {
+    @Async
+    public void sendEmail(SignUpRequest signUpRequest, String token) throws UnsupportedEncodingException, MessagingException {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         System.out.println("Username: " + mailSmtpUser);
         System.out.println("Password: " + mailSmtpPassword);
@@ -57,9 +56,12 @@ public class EmailSender {
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message);
             helper.setFrom(mailSmtpUser);
-            helper.setTo(email);
+            helper.setTo(signUpRequest.getEmail());
+            helper.setText("Hello " + signUpRequest.getName() + " "
+                    + "Thank you for registering on heArt. Please confirm that it's you by clicking on this link: "
+                    + "http://localhost:8080/auth/confirm-registration?token=" + token
+            );
             helper.setSubject(confirmationSubject);
-            helper.setText("Hello");
             mailSender.send(message);
         } catch (MessagingException exception) {
             log.error("Couldn't send the email, try again later");

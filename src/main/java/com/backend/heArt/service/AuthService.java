@@ -27,7 +27,7 @@ public class AuthService {
     @Autowired
     JwtTokenProvider tokenProvider;
 
-    public ApiResponse registerUser(SignUpRequest signUpRequest) {
+    public ApiResponse registerUser(SignUpRequest signUpRequest, String token) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ApiResponse(false, "Username is already taken!");
         }
@@ -42,12 +42,12 @@ public class AuthService {
 
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPhone(), signUpRequest.getPassword(), signUpRequest.getRole());
+                signUpRequest.getEmail(), signUpRequest.getPhone(), signUpRequest.getPassword(), signUpRequest.getRole(), false, token);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User result = userRepository.save(user);
 
-        return new ApiResponse(true, "User registered successfully");
+        return new ApiResponse(true, "Please confirm your registration");
     }
 
     public JwtAuthenticationResponse authenticateUser(LoginRequest loginRequest) {
@@ -63,4 +63,16 @@ public class AuthService {
         String jwt = tokenProvider.generateToken(authentication);
         return new JwtAuthenticationResponse(jwt);
     }
+
+    public ApiResponse confirmUser(String token) {
+        System.out.println("Checking for user");
+        if(userRepository.existsByConfirmationToken(token)) {
+            System.out.println("User found");
+            userRepository.setUserEnabled(true, token);
+            return new ApiResponse(true, "User registered successfully");
+        } else {
+            return new ApiResponse(false, "Please give a valid confirmation token");
+        }
+    }
+
 }
