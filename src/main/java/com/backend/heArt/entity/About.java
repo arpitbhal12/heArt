@@ -1,5 +1,9 @@
 package com.backend.heArt.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,6 +23,7 @@ enum Gender{
 
 @Entity
 @Table(name = "about")
+@AllArgsConstructor
 public class About {
 
     @Id
@@ -26,11 +31,49 @@ public class About {
     private Long id;
 
     @DateTimeFormat
-    @NotBlank
     private Date dob;
 
-    @NotBlank
     private Gender gender;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Size(max = 500)
     private String bio;

@@ -23,9 +23,9 @@ public class GraphQLRequestBody {
     public void setOperationName(String operationName) {
         this.operationName = operationName;
     }
-    public Map<String, Object> getVariables() {
-        return Objects.requireNonNullElseGet(variables, Collections::emptyMap);
-    }
+//    public Map<String, Object> getVariables() {
+//        return Objects.requireNonNullElseGet(variables, Collections::emptyMap);
+//    }
     public void setVariables(Map<String, Object> variables) {
         this.variables = variables;
     }

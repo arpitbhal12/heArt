@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
-@XSlf4j
+//@XSlf4j
 @Component
 public class EmailSender {
     private static final Logger log = LoggerFactory.getLogger(EmailSender.class);
@@ -41,7 +41,7 @@ public class EmailSender {
     private String mailSmtpPort;
 
 
-    @Async
+//    @Async
     public void sendEmail(SignUpRequest signUpRequest, String token) throws UnsupportedEncodingException, MessagingException {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         System.out.println("Username: " + mailSmtpUser);
