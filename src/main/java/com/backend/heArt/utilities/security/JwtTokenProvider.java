@@ -1,4 +1,4 @@
-package com.backend.heArt.security;
+package com.backend.heArt.utilities.security;
 
 import com.backend.heArt.entity.User;
 import io.jsonwebtoken.Claims;

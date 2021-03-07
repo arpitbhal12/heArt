@@ -1,4 +1,4 @@
-package com.backend.heArt.security.email;
+package com.backend.heArt.utilities.email;
 
 import com.backend.heArt.request.SignUpRequest;
 import org.slf4j.Logger;

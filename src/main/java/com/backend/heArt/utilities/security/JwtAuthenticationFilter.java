@@ -1,5 +1,6 @@
-package com.backend.heArt.security;
+package com.backend.heArt.utilities.security;
 
+import com.backend.heArt.service.CustomUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
