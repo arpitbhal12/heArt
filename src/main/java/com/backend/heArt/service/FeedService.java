@@ -49,4 +49,10 @@ public class FeedService implements CommandLineRunner {
         List<Post> posts = postsRepository.findAll();
         return posts;
     }
+
+    public void savePost(Post post) {
+        postsRepository.save(post);
+        return;
+    }
+
 }
