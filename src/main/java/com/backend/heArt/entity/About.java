@@ -35,6 +35,9 @@ public class About {
 
     private Gender gender;
 
+    @OneToOne(mappedBy = "about")
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -67,6 +70,9 @@ public class About {
         this.bio = bio;
     }
 
+    public About() {
+    }
+
     public User getUser() {
         return user;
     }
@@ -78,8 +84,8 @@ public class About {
     @Size(max = 500)
     private String bio;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
 }

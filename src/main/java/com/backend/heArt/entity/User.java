@@ -7,12 +7,8 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.UniqueConstraint;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -70,6 +66,10 @@ public class User implements UserDetails {
     private String confirmationToken;
 
     private Roles role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "about_id")
+    private About about;
 
     @CreationTimestamp
     private Date createdAt;
@@ -130,6 +130,14 @@ public class User implements UserDetails {
         return role;
     }
 
+    public About getAbout() {
+        return about;
+    }
+
+    public void setAbout(About about) {
+        this.about = about;
+    }
+
     public void setRole(Roles role) {
         this.role = role;
     }
@@ -165,7 +173,7 @@ public class User implements UserDetails {
         this.confirmationToken = confirmationToken;
     }
 
-    public User(Long id, String name, String username, String email, String password, String displayPicture, String coverPicture, double rating, String phone, Roles role, Date createdAt, Date updatedAt) {
+    public User(Long id, String name, String username, String email, String password, String displayPicture, String coverPicture, double rating, String phone, Roles role, About about, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -176,6 +184,7 @@ public class User implements UserDetails {
         this.rating = rating;
         this.phone = phone;
         this.role = role;
+        this.about = about;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

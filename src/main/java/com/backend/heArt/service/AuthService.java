@@ -1,5 +1,6 @@
 package com.backend.heArt.service;
 
+import com.backend.heArt.entity.About;
 import com.backend.heArt.entity.User;
 import com.backend.heArt.repository.UserRepository;
 import com.backend.heArt.request.LoginRequest;
@@ -44,8 +45,9 @@ public class AuthService {
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPhone(), signUpRequest.getPassword(), signUpRequest.getRole(), false, token);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        User result = userRepository.save(user);
+        About about = new About();
+        user.setAbout(about);
+        userRepository.save(user);
 
         return new ApiResponse(true, "Please confirm your registration");
     }

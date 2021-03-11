@@ -16,11 +16,12 @@ public class FeedController {
 
     @GetMapping("/all")
     public List<Post> showFeeds() throws Exception {
+        System.out.println("GET Request");
         List<Post> posts = this.feedService.showFeed();
         return posts;
     }
 
-    @PostMapping
+    @PostMapping("/update")
     public String update(@RequestBody Post post){
         feedService.savePost(post);
         return "POsted";

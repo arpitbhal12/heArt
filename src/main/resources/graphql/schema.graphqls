@@ -1,6 +1,15 @@
+scalar Date
+
 schema {
     query: Query,
     mutation: Mutation
+}
+
+type About {
+    id:Int
+    dob:String
+    gender:String
+    bio:String
 }
 
 type User {
@@ -16,13 +25,25 @@ type User {
     createdAt:String
     updatedAt:String
     role:Int
+    about:About
 }
 
-type About {
-    id:Int
-    dob:String
-    gender:String
-    bio:String
+type Comment {
+    userId:Int
+    userName:String
+    commentText:String
+    likeCount:Int
+}
+
+type Post {
+    id:String
+    title:String
+    userId:Int
+    userName:String
+    contentText:String
+    date:Date
+    likeCount:Int
+    commentList:[Comment]
 }
 
 input UserInput {
@@ -39,6 +60,7 @@ input AboutInput {
 type Query{
     getUser(id:Int): User
     getAbout(id:Int): About
+    showFeed: [Post]
 }
 
 type Mutation{
