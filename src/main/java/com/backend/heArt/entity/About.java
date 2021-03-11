@@ -1,9 +1,6 @@
 package com.backend.heArt.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,9 +18,9 @@ enum Gender{
     MALE, FEMALE, OTHER;
 }
 
+@Data
 @Entity
 @Table(name = "about")
-@AllArgsConstructor
 public class About {
 
     @Id
