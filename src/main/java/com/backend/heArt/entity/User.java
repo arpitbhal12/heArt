@@ -1,6 +1,8 @@
 package com.backend.heArt.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,6 +22,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Data
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
                 "username"
@@ -52,10 +55,10 @@ public class User implements UserDetails {
     private String password;
 
     @Size(max = 255)
-    private String display_picture;
+    private String displayPicture;
 
     @Size(max = 255)
-    private String cover_picture;
+    private String coverPicture;
 
     private double rating;
 
@@ -76,15 +79,6 @@ public class User implements UserDetails {
     @UpdateTimestamp
     private Date updatedAt;
 
-    public String getConfirmationToken() {
-        return confirmationToken;
-    }
-
-    public void setConfirmationToken(String confirmationToken) {
-        this.confirmationToken = confirmationToken;
-    }
-
-
     public User() {
 
     }
@@ -100,16 +94,19 @@ public class User implements UserDetails {
         this.confirmationToken = confirmationToken;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public User(Long id, String name, String username, String email, String password, String displayPicture, String coverPicture, double rating, String phone, Roles role, Date createdAt, Date updatedAt) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.displayPicture = displayPicture;
+        this.coverPicture = coverPicture;
+        this.rating = rating;
+        this.phone = phone;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -132,60 +129,9 @@ public class User implements UserDetails {
         return enabled;
     }
 
-    public void setEnabled() {
-        this.enabled = true;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-//    public Set<Role> getRoles() {
-//        return Roles;
-//    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + role +
-                '}';
-    }
-
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
 }

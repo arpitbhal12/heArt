@@ -4,7 +4,7 @@ import com.backend.heArt.request.LoginRequest;
 import com.backend.heArt.request.SignUpRequest;
 import com.backend.heArt.response.ApiResponse;
 import com.backend.heArt.response.JwtAuthenticationResponse;
-import com.backend.heArt.security.email.EmailSender;
+import com.backend.heArt.utilities.email.EmailSender;
 import com.backend.heArt.service.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

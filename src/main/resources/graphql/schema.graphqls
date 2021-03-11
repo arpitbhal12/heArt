@@ -1,0 +1,47 @@
+schema {
+    query: Query,
+    mutation: Mutation
+}
+
+type User {
+    id:Int
+    name:String
+    username:String
+    email:String
+    password:String
+    phone:String
+    displayPicture:String
+    coverPicture:String
+    rating:Float
+    createdAt:String
+    updatedAt:String
+    role:Int
+}
+
+type About {
+    id:Int
+    dob:String
+    gender:String
+    bio:String
+}
+
+input UserInput {
+    id:Int
+    name:String
+}
+
+input AboutInput {
+    id:Int
+    dob:String
+    bio:String
+}
+
+type Query{
+    getUser(id:Int): User
+    getAbout(id:Int): About
+}
+
+type Mutation{
+    updateUser(userInput:UserInput):User
+    updateAbout(aboutInput:AboutInput): About
+}

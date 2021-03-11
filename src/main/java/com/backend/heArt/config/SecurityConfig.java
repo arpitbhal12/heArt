@@ -1,8 +1,8 @@
 package com.backend.heArt.config;
 
-import com.backend.heArt.security.CustomUserDetailsService;
-import com.backend.heArt.security.JwtAuthenticationEntryPoint;
-import com.backend.heArt.security.JwtAuthenticationFilter;
+import com.backend.heArt.service.CustomUserDetailsService;
+import com.backend.heArt.utilities.security.JwtAuthenticationEntryPoint;
+import com.backend.heArt.utilities.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -80,9 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/auth/**")
+                .antMatchers("/**")
                 .permitAll()
-                .antMatchers("/api/randomarts")
+                .antMatchers("/api/randomarts", "/feed/all")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

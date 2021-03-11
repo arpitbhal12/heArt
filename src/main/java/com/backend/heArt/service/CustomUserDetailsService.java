@@ -1,4 +1,4 @@
-package com.backend.heArt.security;
+package com.backend.heArt.service;
 
 import com.backend.heArt.entity.User;
 import com.backend.heArt.repository.UserRepository;

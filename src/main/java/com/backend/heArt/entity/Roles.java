@@ -6,14 +6,6 @@ public enum Roles {
     String roleName;
     int roleId;
 
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
     Roles(String admin, int i) {
     }
 }

@@ -1,5 +1,6 @@
 package com.backend.heArt.entity;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -17,6 +18,7 @@ enum Gender{
     MALE, FEMALE, OTHER;
 }
 
+@Data
 @Entity
 @Table(name = "about")
 public class About {
@@ -26,10 +28,8 @@ public class About {
     private Long id;
 
     @DateTimeFormat
-    @NotBlank
     private Date dob;
 
-    @NotBlank
     private Gender gender;
 
     @Size(max = 500)

@@ -6,7 +6,7 @@ import com.backend.heArt.request.LoginRequest;
 import com.backend.heArt.request.SignUpRequest;
 import com.backend.heArt.response.ApiResponse;
 import com.backend.heArt.response.JwtAuthenticationResponse;
-import com.backend.heArt.security.JwtTokenProvider;
+import com.backend.heArt.utilities.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
