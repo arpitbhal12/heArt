@@ -61,6 +61,8 @@ type Query{
     getUser(id:Int): User
     getAbout(id:Int): About
     showFeed: [Post]
+    getPost(id: String): Post
+    getComment(id: String): Comment
 }
 
 type Mutation{

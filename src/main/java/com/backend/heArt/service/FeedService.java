@@ -18,6 +18,10 @@ public class FeedService implements GraphQLQueryResolver {
         return posts;
     }
 
+    public Post getPost(String id) {
+        return postsRepository.getPostById(id);
+    }
+
     public void savePost(Post post) {
         postsRepository.save(post);
         return;
